@@ -1,0 +1,33 @@
+<root>
+    <BehaviorTree ID="MainTree">
+        <Fallback name="root_Fallback">
+            <Condition ID="IsServiceFlowInput"/>
+            <Sequence name="BT_process_sequence">
+                <Fallback name="Sub2_Fallback">
+                    <Condition ID="IsContainResourceAwarenessModel"/>
+                    <Sequence name="Resource Awareness Sequence 1">
+                        <Condition ID="IsCurrentResourcesCanSupportServiceCompletion"/>
+                        <Action ID="PrintCurrentResources"/>
+                        <Condition ID="WhatResourcesAreNeeded"/>
+                        <Action ID="PrintRequiredResourceName"/>
+                        <Sequence name="Resource Awareness Sequence 2">
+                            <Condition ID="IsOpenResourceAwarenessArchitecture"/>
+                            <Action ID="RunningResourceAwareness"/>
+                        </Sequence>
+                    </Sequence>
+                </Fallback>
+                <Fallback name="Sub3_Fallback">
+                    <Condition ID="IsContainServiceMigrationModel"/>
+                    <Sequence name="Service Migration Sequence 1">
+                        <Action ID="PrintCurrentResourcesInformation"/>
+                        <Condition ID="IsCurrentResourceExceedstheThreshold"/>
+                        <Sequence name="Service Migration Sequence 2">
+                            <Action ID="RunningServiceMigration"/>
+                            <Action ID="PrintMigrationPath"/>
+                        </Sequence>
+                    </Sequence>
+                </Fallback>
+            </Sequence>
+        </Fallback>
+    </BehaviorTree>
+</root>
