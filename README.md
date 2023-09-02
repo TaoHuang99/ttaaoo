@@ -24,13 +24,15 @@ src/migration-process/ 文件下的migration-process.cpp以及migration-process.
 1.	修改
 Sudo vim /lib/systemd/system/docker.service
 注释下面的并添加新的
-# ExecStart=/usr/bin/dockerd -H fd://
+ # ExecStart=/usr/bin/dockerd -H fd://
 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
 2.	重启服务
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker.service
 二、
 或者本机创建python文件
+
+
 from flask import Flask, jsonify
 import docker
 
